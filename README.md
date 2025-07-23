@@ -103,7 +103,6 @@ python train.py \
   --data-dir ./data
 ```
 
-````
 
 ```text
 # requirements.txt
@@ -115,4 +114,4 @@ numpy
 matplotlib
 albumentations
 tqdm
-````
+```
