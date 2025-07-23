@@ -1,52 +1,122 @@
+I apologize for the confusion earlier. Here is the complete content formatted as a single markdown file:
 
-# PRNet_MaanzAI
+```markdown
+# PRNet ChestXRay Training
 
-<!-- Badges (replace with actual badges) -->
+Progressive Resolution–based Network (PRNet) for Chest X‑Ray disease classification, with support for various backbones, image resolutions, and training options.
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/your-username/your-repo/graphs/commit-activity)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/your-username/your-repo/blob/main/CONTRIBUTING.md)
+## Requirements
 
-## Description
+1. Clone this repo:
 
-> Provide a detailed description of the PRNet_MaanzAI project here. Explain its purpose, goals, and intended audience. What problem does it solve? What are its key features and functionalities? Be as specific as possible.
+```bash
+git clone https://github.com/your-username/PRNet.git
+cd PRNet
+```
 
-PRNet_MaanzAI aims to [Clearly state the main purpose of the project]. This project is designed to [Describe the goals and objectives]. It addresses the challenge of [Mention the problem the project solves] by providing [Highlight the key features and functionalities].
+2. Install dependencies:
 
-## Getting Started
+```bash
+pip install -r requirements.txt
+```
 
-These instructions will help you set up and run the PRNet_MaanzAI project on your local machine.
+## Project Structure
 
-### Prerequisites
+```bash
+PRNet/
+├── train.py # CLI entrypoint
+├── models/ # model & backbone implementations
+├── data/ # your data: train/, val/, test/ folders
+└── outputs/
+├── curves/ # training curves (PNG)
+└── results/ # aggregated CSV results
+```
 
-Make sure you have the following software installed:
+## Usage
 
-> - [List any software dependencies, e.g., Python 3.8+, Node.js 14+, etc.]
-> - [Include specific versions if necessary]
-> - Example: Python 3.8 or higher
+### Local / Server
 
-### Installation
+```bash
+python train.py \
+--backbone efficientnet_b5 \
+--image-size 512 \
+--progressive \
+--bias-softmax \
+--epochs 20 \
+--batch-size 16 \
+--lr 1e-4 \
+--patience 5 \
+--data-dir /path/to/data
+```
 
-1.  Clone the repository:
+### Kaggle
 
-bash
-    # Example for Python
-    pip install -r requirements.txt
-    > Provide examples of how to use the PRNet_MaanzAI project. Show common use cases and explain the expected output. Include code snippets and sample commands.
+```bash
+!git clone https://github.com/your-username/PRNet.git
+%cd PRNet
+!pip install -r requirements.txt
+!python train.py \
+--backbone efficientnet_b5 \
+--image-size 512 \
+--progressive \
+--bias-softmax
+```
 
-### Example 1: [Describe the use case]
+### Colab
 
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix.
-3.  Make your changes and test them thoroughly.
-4.  Submit a pull request with a clear description of your changes.
+```bash
+!git clone https://github.com/your-username/PRNet.git
+%cd PRNet
+!pip install -r requirements.txt
+!python train.py \
+--backbone efficientnet_b5 \
+--image-size 512 \
+--progressive \
+--bias-softmax
+```
 
-> [Consider adding a link to a CONTRIBUTING.md file for more detailed contribution guidelines.]
-> Example: [CONTRIBUTING.md](CONTRIBUTING.md)
+## CLI Arguments
 
-## License
+| Flag | Type | Default | Description |
+| -- | -- | -- | -- |
+| --backbone | string | required | Backbone model name (e.g. efficientnet_b0, resnet50) |
+| --image-size | int | required | Square input resolution |
+| --progressive | — | False | Enable Progressive Resolution pipeline |
+| --bias-softmax | — | False | Apply bias‑adjustable softmax |
+| --epochs | int | 20 | Number of training epochs |
+| --batch-size | int | 16 | Batch size |
+| --lr | float | 1e-4 | Initial learning rate |
+| --patience | int | 5 | Early‑stopping patience (epochs without improvement) |
+| --data-dir | string | /kaggle/working/data | Root dir containing train/, val/, test/ image folders |
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Outputs
 
-## Contact
+- `outputs/curves/` – PNG files of training/validation curves
+- `outputs/results/prnet_results.csv` – CSV log of each run’s metrics
 
+## Example
+
+```bash
+python train.py \
+--backbone resnet50 \
+--image-size 224 \
+--epochs 30 \
+--batch-size 32 \
+--lr 5e-5 \
+--patience 7 \
+--data-dir ./data
+```
+
+## Requirements File
+
+```text
+# requirements.txt
+torch>=1.12
+torchvision
+timm
+pandas
+numpy
+matplotlib
+albumentations
+tqdm
+```
