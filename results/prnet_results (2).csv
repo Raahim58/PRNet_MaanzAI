@@ -1,3 +1,0 @@
-Backbone,Image Size,Progressive,Bias-Softmax,5-Fold Accuracy,Validation Accuracy,Test Accuracy,Train Time (s),Val Time (s),Test Time (s),Test Loss,Test Acc
-EFFNET-B0,640×640,Yes,Yes,97.48%,96.55%,95.05%,4471.6,273.1,29.8,0.1878,0.9505
-EFFNET-B5,512×512,No,No,98.86%,96.78%,96.08%,15390.9,581.9,57.5,0.1139,0.9608
