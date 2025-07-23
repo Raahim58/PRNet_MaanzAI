@@ -1,4 +1,3 @@
-````markdown
 # PRNet ChestXRay Training
 
 Progressive Resolution–based Network (PRNet) for Chest X‑Ray disease classification, with support for various backbones, image resolutions, and training options.
@@ -9,7 +8,7 @@ Progressive Resolution–based Network (PRNet) for Chest X‑Ray disease classif
    ```bash
    git clone https://github.com/your-username/PRNet.git
    cd PRNet
-````
+   ```
 
 2. Install dependencies:
 
